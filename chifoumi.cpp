@@ -15,8 +15,8 @@
 Chifoumi::Chifoumi():
     scoreJoueur(0),
     scoreMachine(0),
-    coupMachine(rien),
-    coupJoueur(rien)
+    coupJoueur(rien),
+    coupMachine(rien)
 {
 }
 
@@ -116,7 +116,7 @@ void Chifoumi::majScores(char p_gagnant) {
         (*this).scoreJoueur++;
     }
     else if (p_gagnant == 'M'){
-        (*this).scoreMachine;
+        (*this).scoreMachine++;
     }
 }
 
