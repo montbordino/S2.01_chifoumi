@@ -32,7 +32,7 @@ Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
 }
 
 Chifoumi::UnCoup Chifoumi::getCoupMachine() {
-    return (*this).coupJoueur;
+    return (*this).coupMachine;
 }
 
 unsigned int Chifoumi::getScoreJoueur() {
@@ -45,17 +45,19 @@ unsigned int Chifoumi::getScoreMachine() {
 
 char Chifoumi::determinerGagnant()
 {
-    char gagnantARetourner;
+    char gagnantARetourner = '\0';
 
     // avant de commencer : match nul
-    gagnantARetourner = 'N';
+    if ((*this).coupJoueur == ((*this).coupMachine)){
+        gagnantARetourner = 'N';
+    }
 
     // il sera modifi� dans l'un des cas suivants
-    if ((*this).scoreJoueur > ((*this).scoreMachine)){
-        gagnantARetourner = 'J';
-    }
-    else if (((*this).scoreMachine > (*this).scoreJoueur)){
+    else if (((*this).coupMachine == (*this).coupJoueur+1) || ((*this).coupMachine + 2 == (*this).coupJoueur)){
         gagnantARetourner = 'M';
+    }
+    else if (((*this).coupMachine+1 == (*this).coupJoueur) || ((*this).coupMachine == (*this).coupJoueur +2)){
+        gagnantARetourner = 'J';
     }
 
     return gagnantARetourner;
