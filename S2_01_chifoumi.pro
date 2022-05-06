@@ -10,7 +10,6 @@ CONFIG += c++11
 
 SOURCES += \
     chifoumi.cpp \
-    jeu_de_test.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -19,8 +18,7 @@ HEADERS += \
     mainwindow.h
 
 FORMS += \
-    ChifoumiVue.ui \
-    mainwindow.ui
+    ChifoumiVue.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

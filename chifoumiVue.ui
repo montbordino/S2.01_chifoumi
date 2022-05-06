@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>318</width>
-    <height>391</height>
+    <width>391</width>
+    <height>436</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -188,6 +188,9 @@
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="title">
        <string>Choisissez une figure:</string>
       </property>
@@ -208,6 +211,12 @@
        <item>
         <widget class="QPushButton" name="bPierre">
          <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="maximumSize">
           <size>
            <width>80</width>
            <height>80</height>
@@ -265,6 +274,12 @@
            <height>80</height>
           </size>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>80</height>
+          </size>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -310,7 +325,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>318</width>
+     <width>391</width>
      <height>25</height>
     </rect>
    </property>
