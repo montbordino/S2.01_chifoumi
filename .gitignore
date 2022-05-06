@@ -1,3 +1,6 @@
+#changement fait manuellement
+*.pro.user
+
 # Prerequisites
 *.d
 
