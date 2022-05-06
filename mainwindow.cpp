@@ -7,14 +7,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Chifoumi jeu;
+    pierre=new QPixmap(":/chifoumi/images/pierre.gif");
+    feuille=new QPixmap(":/chifoumi/images/papier.gif");
+    ciseau=new QPixmap(":/chifoumi/images/ciseau.gif");
 
     //connexions
     QObject::connect(ui->bNouvellePartie, SIGNAL(clicked()), this, SLOT(lancerPartie()));
-    QObject::connect(ui->bPierre, SIGNAL(clicked()), this, SLOT(jouerPierre(jeu)));
-    QObject::connect(ui->bFeuille, SIGNAL(clicked()), this, SLOT(jouerFeuille(jeu)));
-    QObject::connect(ui->bCiseau, SIGNAL(clicked()), this, SLOT(jouerCiseaux(jeu)));
-
+    QObject::connect(ui->bPierre, SIGNAL(clicked()), this, SLOT(jouerPierre()));
+    QObject::connect(ui->bFeuille, SIGNAL(clicked()), this, SLOT(jouerFeuille()));
+    QObject::connect(ui->bCiseau, SIGNAL(clicked()), this, SLOT(jouerCiseaux()));
 }
 
 MainWindow::~MainWindow()
@@ -24,19 +25,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::lancerPartie(){
     ui->groupBox->setEnabled(true);
+
 }
 
-void MainWindow::jouerPierre(Chifoumi &jeu){
+void MainWindow::jouerPierre(){
     jeu.setCoupJoueur(Chifoumi::pierre);
-;}
+    ui->labelImageJoueur->setPixmap(*pierre);
+}
 
-void MainWindow::jouerFeuille(Chifoumi &jeu){
+void MainWindow::jouerFeuille(){
     jeu.setCoupJoueur(Chifoumi::papier);
-;}
+    ui->labelImageJoueur->setPixmap(*feuille);
+}
 
-void MainWindow::jouerCiseaux(Chifoumi &jeu){
+void MainWindow::jouerCiseaux(){
     jeu.setCoupJoueur(Chifoumi::ciseau);
-;}
+    ui->labelImageJoueur->setPixmap(*ciseau);
+}
 
 
 
