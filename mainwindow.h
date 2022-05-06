@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "chifoumi.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +18,11 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void lancerPartie();
+    void jouerPierre(Chifoumi &);
+    void jouerFeuille(Chifoumi &);
+    void jouerCiseaux(Chifoumi &);
 };
 #endif // MAINWINDOW_H

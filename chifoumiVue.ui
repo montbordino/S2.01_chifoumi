@@ -267,7 +267,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="bCiseaux">
+        <widget class="QPushButton" name="bCiseau">
          <property name="minimumSize">
           <size>
            <width>80</width>
