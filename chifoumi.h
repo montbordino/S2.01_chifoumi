@@ -37,7 +37,7 @@ class Chifoumi
                en fonction du dernier coup joué par chacun d'eux */
 
          ///* Méthodes utilitaires du Modèle
-    private :
+    public :
         UnCoup genererUnCoup();
     /* retourne une valeur aléatoire = pierre, papier ou ciseau.
        Utilisée pour faire jouer la machine */

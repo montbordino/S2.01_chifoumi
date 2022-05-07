@@ -23,11 +23,15 @@ private:
     QPixmap *pierre;
     QPixmap *feuille;
     QPixmap *ciseau;
+    QPixmap *rien;
 
 private slots:
     void lancerPartie();
     void jouerPierre();
     void jouerFeuille();
     void jouerCiseaux();
+    void finDuTour();
+    void setBlue(char);
+    void definirImageMachine(Chifoumi::UnCoup);
 };
 #endif // MAINWINDOW_H

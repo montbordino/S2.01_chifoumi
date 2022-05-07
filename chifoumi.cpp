@@ -74,7 +74,7 @@ int randMinMax(int min, int max){
 Chifoumi::UnCoup Chifoumi::genererUnCoup()
 {
     UnCoup valeurGeneree;   // valeur � retourner
-    int nb_au_hasard = randMinMax(0, 2);
+    int nb_au_hasard = randMinMax(0, 3);
     switch (nb_au_hasard)
     {
     case 0:
