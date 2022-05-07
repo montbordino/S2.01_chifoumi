@@ -1,5 +1,5 @@
 #changement fait manuellement
-*.pro.user.*
+*.pro.user*
 
 # Prerequisites
 *.d
