@@ -58,5 +58,12 @@ private slots:
      * @brief définis le joueur gagnant la manche, met à jour les scores, les affiches à l'écran et met la couleur bleu sur le joueur humain
      */
     void finManche();
+
+    void quitterApp();
+
+    /**
+     * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox
+     */
+    void infosApp();
 };
 #endif // MAINWINDOW_H

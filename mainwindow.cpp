@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_ChifoumiVue.h"
+#include "QMessageBox"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,10 +15,16 @@ MainWindow::MainWindow(QWidget *parent)
     rien=new QPixmap(":/chifoumi/images/rien.gif");
 
     //connexions
+
+    // Qboutons
     QObject::connect(ui->bNouvellePartie, SIGNAL(clicked()), this, SLOT(lancerPartie()));
     QObject::connect(ui->bPierre, SIGNAL(clicked()), this, SLOT(jouerPierre()));
     QObject::connect(ui->bFeuille, SIGNAL(clicked()), this, SLOT(jouerFeuille()));
     QObject::connect(ui->bCiseau, SIGNAL(clicked()), this, SLOT(jouerCiseaux()));
+
+    // Qactions
+    QObject::connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(quitterApp()));
+    QObject::connect(ui->actionInformationsApp, SIGNAL(triggered()), this, SLOT(infosApp()));
 
     // focus et ordre de parcours
     ui->bNouvellePartie->setFocus();
@@ -121,3 +128,11 @@ void MainWindow::definirImageMachine(Chifoumi::UnCoup coupMachine){
     }
 }
 
+void MainWindow::quitterApp(){
+    (*this).close();
+}
+
+void MainWindow::infosApp(){
+    QString infos = "";
+    QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
+}
