@@ -38,8 +38,12 @@ MainWindow::~MainWindow()
 void MainWindow::lancerPartie(){
     ui->groupBox->setEnabled(true);
     setBlue('J');
+
+    // remise à zero des données
     jeu.initScores();
     jeu.initCoups();
+
+    // affichage à l'écran de la remise à zero
     ui->labelScoreJoueur->setText(QString::number(jeu.getScoreJoueur()));
     ui->labelScoreMachine->setText(QString::number(jeu.getScoreMachine()));
     ui->labelImageJoueur->setPixmap(*rien);
@@ -66,29 +70,39 @@ void MainWindow::jouerCiseaux(){
 
 void MainWindow::tourMachine(){
     setBlue('M');
+    // choix du coup joueur machine au hasard
     jeu.setCoupMachine(jeu.genererUnCoup());
+
+    // affichage du coup
     definirImageMachine(jeu.getCoupMachine());
-    finPartie();
+    finManche();
 }
 
-void MainWindow::finPartie(){
+void MainWindow::finManche(){
     jeu.majScores(jeu.determinerGagnant());
+
+    // mise à jour des scores à l'écran
     ui->labelScoreMachine->setText(QString::number(jeu.getScoreMachine()));
     ui->labelScoreJoueur->setText(QString::number(jeu.getScoreJoueur()));
+
     setBlue('J');
 }
 
 void MainWindow::setBlue(char cible){
     if (cible == 'M'){
+        // joueur humain en noir
         ui->labelIntituleJoueur->setStyleSheet("color: #000000");
-        ui->labelIntituleMachine->setStyleSheet("color: #0000F0");
         ui->labelScoreJoueur->setStyleSheet("color: #000000");
+        // joueur machine en bleu
+        ui->labelIntituleMachine->setStyleSheet("color: #0000F0");
         ui->labelScoreMachine->setStyleSheet("color: #0000F0");
     }
     else if (cible == 'J'){
+        // joueur humain en bleu
         ui->labelIntituleJoueur->setStyleSheet("color: #0000F0");
-        ui->labelIntituleMachine->setStyleSheet("color: #000000");
         ui->labelScoreJoueur->setStyleSheet("color: #0000F0");
+        // joueur machine en noir
+        ui->labelIntituleMachine->setStyleSheet("color: #000000");
         ui->labelScoreMachine->setStyleSheet("color: #000000");
     }
 }
