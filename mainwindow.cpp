@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    //création des QPixmap
     pierre=new QPixmap(":/chifoumi/images/pierre.gif");
     feuille=new QPixmap(":/chifoumi/images/papier.gif");
     ciseau=new QPixmap(":/chifoumi/images/ciseau.gif");
@@ -17,6 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->bPierre, SIGNAL(clicked()), this, SLOT(jouerPierre()));
     QObject::connect(ui->bFeuille, SIGNAL(clicked()), this, SLOT(jouerFeuille()));
     QObject::connect(ui->bCiseau, SIGNAL(clicked()), this, SLOT(jouerCiseaux()));
+
+    // focus et ordre de parcours
+    ui->bNouvellePartie->setFocus();
+    ui->bNouvellePartie->setDefault(true);
+
+    QWidget::setTabOrder(ui->bNouvellePartie, ui->bPierre);
+    QWidget::setTabOrder(ui->bPierre, ui->bFeuille);
+    QWidget::setTabOrder(ui->bFeuille, ui->bCiseau);
+    QWidget::setTabOrder(ui->bCiseau, ui->bNouvellePartie);
+
 }
 
 MainWindow::~MainWindow()
