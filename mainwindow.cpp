@@ -133,6 +133,8 @@ void MainWindow::quitterApp(){
 }
 
 void MainWindow::infosApp(){
-    QString infos = "";
+    QString infos = tr("version : V3\n"
+                    "dernière modification : 8 mai 2022\n"
+                    "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
