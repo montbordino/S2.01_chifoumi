@@ -1,25 +1,31 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef CHIFOUMIVUE_H
+#define CHIFOUMIVUE_H
 
 #include <QMainWindow>
-#include "chifoumi.h"
 #include "QPixmap"
+#include "modele.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class ChifoumiVue; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class ChifoumiVue : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ChifoumiVue(QMainWindow *parent = nullptr);
+    ~ChifoumiVue();
+public:
+    // pour créer une connexion avec la présentation
+    void nvlleConnexion(QObject *c);
+    void supprConnexion(QObject *c);
+    // ordres reçus par la présentation
+    void majInterface (Modele::UnEtat, Modele::UnCoup=Modele::UnCoup::rien,Modele::UnCoup=Modele::UnCoup::rien,int=0,int=0);
 
 private:
-    Ui::MainWindow *ui;
-    Chifoumi jeu;
+    Ui::ChifoumiVue *ui;
+    //ChifoumiVue jeu;
     QPixmap *pierre;
     QPixmap *feuille;
     QPixmap *ciseau;
@@ -34,14 +40,14 @@ private slots:
     /**
      * @brief change le coup du joueur, l'affiche à l'écran et lance tourMachine()
      */
-    void jouerPierre();
-    void jouerFeuille();
-    void jouerCiseaux();
+    void jouerPierre(Modele::UnCoup,int=0,int=0);
+    void jouerFeuille(Modele::UnCoup,int=0,int=0);
+    void jouerCiseaux(Modele::UnCoup,int=0,int=0);
 
     /**
      * @brief met la couleur bleu sur la machine, choisis son coup au hasard et l'affiche à l'écran puis lance finPartie()
      */
-    void tourMachine();
+    void tourMachine(Modele::UnCoup,int=0,int=0);
 
     /**
      * @brief modifie le score et prénom du joueur cible en bleu et change ceux de l'autre joueur en noir
@@ -52,18 +58,20 @@ private slots:
     /**
      * @brief definis l'image du joueur machine en fonction de son coup Chifoumi::UnCoup
      */
-    void definirImageMachine(Chifoumi::UnCoup);
+    void definirImageMachine(Modele::UnCoup);
 
     /**
      * @brief définis le joueur gagnant la manche, met à jour les scores, les affiches à l'écran et met la couleur bleu sur le joueur humain
      */
-    void finManche();
+    void finManche(int=0,int=0);
 
     void quitterApp();
 
     /**
      * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox
      */
+
+public slots:
     void infosApp();
 };
-#endif // MAINWINDOW_H
+#endif // CHIFOUMIVUE_H

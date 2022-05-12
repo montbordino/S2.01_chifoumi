@@ -4,7 +4,7 @@
  * Created:   2021-05-10
  * Description : classe m�tier (= mod�le) Chifoumi-v1
  **************************************************************/
-#include "chifoumi.h"
+#include "modele.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -12,7 +12,7 @@
 
     ///* ---- PARTIE MOD�LE ---------------------------
 
-Chifoumi::Chifoumi():
+Modele::Modele():
     scoreJoueur(0),
     scoreMachine(0),
     coupJoueur(rien),
@@ -20,30 +20,30 @@ Chifoumi::Chifoumi():
 {
 }
 
-Chifoumi::~Chifoumi()
+Modele::~Modele()
 {
     delete[] this;
 }
 
         /// Getters
 
-Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
-	return (*this).coupJoueur;
+Modele::UnCoup Modele::getCoupJoueur() {
+    return (*this).coupJoueur;
 }
 
-Chifoumi::UnCoup Chifoumi::getCoupMachine() {
+Modele::UnCoup Modele::getCoupMachine() {
     return (*this).coupMachine;
 }
 
-unsigned int Chifoumi::getScoreJoueur() {
+unsigned int Modele::getScoreJoueur() {
     return (*this).scoreJoueur;
 }
 
-unsigned int Chifoumi::getScoreMachine() {
+unsigned int Modele::getScoreMachine() {
     return (*this).scoreMachine;
 }
 
-char Chifoumi::determinerGagnant()
+char Modele::determinerGagnant()
 {
     char gagnantARetourner = '\0';
 
@@ -71,7 +71,7 @@ int randMinMax(int min, int max){
    return rand()%(max-min) + min;
 }
 
-Chifoumi::UnCoup Chifoumi::genererUnCoup()
+Modele::UnCoup Modele::genererUnCoup()
 {
     UnCoup valeurGeneree;   // valeur � retourner
     int nb_au_hasard = randMinMax(0, 3);
@@ -80,11 +80,11 @@ Chifoumi::UnCoup Chifoumi::genererUnCoup()
     case 0:
         valeurGeneree = pierre;
         break;
-    
+
     case 1:
         valeurGeneree = papier;
         break;
-    
+
     case 2:
         valeurGeneree = ciseau;
         break;
@@ -95,23 +95,23 @@ Chifoumi::UnCoup Chifoumi::genererUnCoup()
 
         /// Setters
 
-void Chifoumi::setCoupJoueur(UnCoup p_coup) {
+void Modele::setCoupJoueur(UnCoup p_coup) {
     (*this).coupJoueur=p_coup;
 }
 
-void Chifoumi::setCoupMachine(UnCoup p_coup) {
+void Modele::setCoupMachine(UnCoup p_coup) {
     (*this).coupMachine=p_coup;
 }
 
-void Chifoumi::setScoreJoueur(unsigned int p_score) {
+void Modele::setScoreJoueur(unsigned int p_score) {
     (*this).scoreJoueur=p_score;
 }
 
-void Chifoumi::setScoreMachine(unsigned int p_score) {
+void Modele::setScoreMachine(unsigned int p_score) {
     (*this).scoreMachine=p_score;
 }
 
-void Chifoumi::majScores(char p_gagnant) {
+void Modele::majScores(char p_gagnant) {
     if (p_gagnant == 'J'){
         (*this).scoreJoueur++;
     }
@@ -120,12 +120,17 @@ void Chifoumi::majScores(char p_gagnant) {
     }
 }
 
-void Chifoumi::initScores() {
+void Modele::initScores() {
     (*this).scoreMachine=0;
     (*this).scoreJoueur=0;
 }
 
-void Chifoumi::initCoups() {
+void Modele::initCoups() {
     (*this).coupJoueur=rien;
     (*this).coupMachine=rien;
+}
+
+Modele::UnEtat Modele::getEtat()
+{
+    return _etat;
 }
