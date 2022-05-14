@@ -43,24 +43,25 @@ unsigned int Modele::getScoreMachine() {
     return (*this).scoreMachine;
 }
 
-char Modele::determinerGagnant()
+void Modele::determinerGagnant()
 {
-    char gagnantARetourner = '\0';
-
+    int score;
     // avant de commencer : match nul
     if ((*this).coupJoueur == ((*this).coupMachine)){
-        gagnantARetourner = 'N';
+        (*this).setScoreJoueur((*this).getScoreJoueur());
+        (*this).setScoreMachine((*this).getScoreMachine());
     }
 
     // il sera modifi� dans l'un des cas suivants
     else if (((*this).coupMachine == (*this).coupJoueur+1) || ((*this).coupMachine + 2 == (*this).coupJoueur)){
-        gagnantARetourner = 'M';
+        score=(*this).getScoreMachine()+1;
+        (*this).setScoreMachine(score);
     }
     else if (((*this).coupMachine+1 == (*this).coupJoueur) || ((*this).coupMachine == (*this).coupJoueur +2)){
-        gagnantARetourner = 'J';
+        score=(*this).getScoreJoueur()+1;
+        (*this).setScoreJoueur(score);
     }
 
-    return gagnantARetourner;
 }
 
          ///* M�thodes utilitaires du Mod�le

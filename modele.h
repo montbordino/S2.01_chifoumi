@@ -33,7 +33,7 @@ class Modele
             /* retourne le score du joueur */
         unsigned int getScoreMachine();
             /* retourne le score de la machine */
-        char determinerGagnant();
+        void determinerGagnant();
             /* d�termine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
                en fonction du dernier coup jou� par chacun d'eux */
 

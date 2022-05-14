@@ -1,7 +1,6 @@
 #include "chifoumivue.h"
 #include "ui_ChifoumiVue.h"
 #include <QMessageBox>
-
 ChifoumiVue::ChifoumiVue(QMainWindow *parent)
     : QMainWindow(parent)
     , ui(new Ui::ChifoumiVue)
@@ -22,6 +21,7 @@ ChifoumiVue::ChifoumiVue(QMainWindow *parent)
     QWidget::setTabOrder(ui->bFeuille, ui->bCiseau);
     QWidget::setTabOrder(ui->bCiseau, ui->bNouvellePartie);
 
+    ui->groupBox->setEnabled(false);
 }
 
 ChifoumiVue::~ChifoumiVue()
@@ -37,7 +37,7 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     QObject::connect(ui->bNouvellePartie, SIGNAL(clicked()), c, SLOT(demanderLancerPartie()));
     QObject::connect(ui->bPierre, SIGNAL(clicked()), c, SLOT(demanderJouerPierre()));
     QObject::connect(ui->bFeuille, SIGNAL(clicked()), c, SLOT(demanderJouerPapier()));
-    QObject::connect(ui->bCiseau, SIGNAL(clicked()), c, SLOT(demanderJouerCiseaux()));
+    QObject::connect(ui->bCiseau, SIGNAL(clicked()), c, SLOT(demanderJouerCiseau()));
 
     // Qactions
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
@@ -90,8 +90,8 @@ void ChifoumiVue::tourMachine(Modele::UnCoup m,int scoreJoueur,int scoreMachine)
 
 void ChifoumiVue::finManche(int scoreJoueur,int scoreMachine){
     // mise à jour des scores à l'écran
-    ui->labelScoreMachine->setText(QString::number(scoreJoueur));
-    ui->labelScoreJoueur->setText(QString::number(scoreMachine));
+    ui->labelScoreMachine->setText(QString::number(scoreMachine));
+    ui->labelScoreJoueur->setText(QString::number(scoreJoueur));
 
     setBlue('J');
 }
@@ -135,29 +135,34 @@ void ChifoumiVue::quitterApp(){
 
 void ChifoumiVue::infosApp(){
     QString infos = tr("version : V3\n"
-                    "dernière modification : 12 mai 2022\n"
+                    "dernière modification : 14 mai 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
 
-void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup j,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
+void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
     switch (e) {
         case Modele::UnEtat::lance :
-            switch (j) {
+            switch (c) {
+
                 case Modele::UnCoup::papier:
                     this->jouerFeuille(m,scoreJoueur,scoreMachine);
                     break;
+
                 case Modele::UnCoup::ciseau:
                     this->jouerCiseaux(m,scoreJoueur,scoreMachine);
                     break;
+
                 case Modele::UnCoup::pierre:
                     this->jouerPierre(m,scoreJoueur,scoreMachine);
                     break;
+
                 case Modele::UnCoup::rien:
                     lancerPartie();
                     break;
             }
             break;
+
 
         case Modele::UnEtat::termine :
             this->quitterApp();

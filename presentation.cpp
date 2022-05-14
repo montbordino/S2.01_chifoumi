@@ -36,7 +36,7 @@ void Presentation::demanderLancerPartie(){
 
 void Presentation::demanderJouerCiseau(){
     // choix du coup joueur machine au hasard
-    _leModele->genererUnCoup();
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::ciseau);
     _leModele->determinerGagnant();
     _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
@@ -44,7 +44,7 @@ void Presentation::demanderJouerCiseau(){
 
 void Presentation::demanderJouerPierre(){
     // choix du coup joueur machine au hasard
-    _leModele->genererUnCoup();
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::pierre);
     _leModele->determinerGagnant();
     _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
@@ -52,7 +52,7 @@ void Presentation::demanderJouerPierre(){
 
 void Presentation::demanderJouerPapier(){
     // choix du coup joueur machine au hasar
-    _leModele->genererUnCoup();
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::papier);
     _leModele->determinerGagnant();
     _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
