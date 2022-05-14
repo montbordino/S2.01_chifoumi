@@ -66,21 +66,6 @@ void ChifoumiVue::lancerPartie(){
     ui->labelImageMachine->setPixmap(*rien);
 }
 
-void ChifoumiVue::jouerPierre(Modele::UnCoup m,int scoreJoueur,int scoreMachine){
-    ui->labelImageJoueur->setPixmap(*pierre);
-    tourMachine(m,scoreJoueur,scoreMachine);
-}
-
-void ChifoumiVue::jouerFeuille(Modele::UnCoup m,int scoreJoueur,int scoreMachine){
-    ui->labelImageJoueur->setPixmap(*feuille);
-    tourMachine(m,scoreJoueur,scoreMachine);
-}
-
-void ChifoumiVue::jouerCiseaux(Modele::UnCoup m,int scoreJoueur,int scoreMachine){
-    ui->labelImageJoueur->setPixmap(*ciseau);
-    tourMachine(m,scoreJoueur,scoreMachine);
-}
-
 void ChifoumiVue::tourMachine(Modele::UnCoup m,int scoreJoueur,int scoreMachine){
     setBlue('M');
     // affichage du coup
@@ -145,15 +130,18 @@ void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup 
         switch (c) {
 
             case Modele::UnCoup::papier:
-                this->jouerFeuille(m,scoreJoueur,scoreMachine);
+                ui->labelImageJoueur->setPixmap(*feuille);
+                tourMachine(m,scoreJoueur,scoreMachine);
                 break;
 
             case Modele::UnCoup::ciseau:
-                this->jouerCiseaux(m,scoreJoueur,scoreMachine);
+                ui->labelImageJoueur->setPixmap(*ciseau);
+                tourMachine(m,scoreJoueur,scoreMachine);
                 break;
 
             case Modele::UnCoup::pierre:
-                this->jouerPierre(m,scoreJoueur,scoreMachine);
+                ui->labelImageJoueur->setPixmap(*pierre);
+                tourMachine(m,scoreJoueur,scoreMachine);
                 break;
 
             case Modele::UnCoup::rien:

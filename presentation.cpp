@@ -51,7 +51,7 @@ void Presentation::demanderJouerPierre(){
 }
 
 void Presentation::demanderJouerPapier(){
-    // choix du coup joueur machine au hasar
+    // choix du coup joueur machine au hasard
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::papier);
     _leModele->determinerGagnant();
@@ -59,6 +59,7 @@ void Presentation::demanderJouerPapier(){
 }
 
 void Presentation::demanderQuitterApp(){
+   //_laVue->supprConnexion(_laVue);
    _laVue->quitterApp();
 }
 

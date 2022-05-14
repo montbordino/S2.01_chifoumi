@@ -38,13 +38,6 @@ private slots:
     void lancerPartie();
 
     /**
-     * @brief change le coup du joueur, l'affiche à l'écran et lance tourMachine()
-     */
-    void jouerPierre(Modele::UnCoup,int=0,int=0);
-    void jouerFeuille(Modele::UnCoup,int=0,int=0);
-    void jouerCiseaux(Modele::UnCoup,int=0,int=0);
-
-    /**
      * @brief met la couleur bleu sur la machine, choisis son coup au hasard et l'affiche à l'écran puis lance finPartie()
      */
     void tourMachine(Modele::UnCoup,int=0,int=0);
