@@ -65,13 +65,12 @@ private slots:
      */
     void finManche(int=0,int=0);
 
+public slots:
     void quitterApp();
 
     /**
      * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox
      */
-
-public slots:
     void infosApp();
 };
 #endif // CHIFOUMIVUE_H

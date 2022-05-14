@@ -31,7 +31,7 @@ void Presentation::demanderLancerPartie(){
     // remise à zero des données
     _leModele->initCoups();
     _leModele->initScores();
-    _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
 }
 
 void Presentation::demanderJouerCiseau(){
@@ -39,7 +39,7 @@ void Presentation::demanderJouerCiseau(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::ciseau);
     _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
 }
 
 void Presentation::demanderJouerPierre(){
@@ -47,7 +47,7 @@ void Presentation::demanderJouerPierre(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::pierre);
     _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
 }
 
 void Presentation::demanderJouerPapier(){
@@ -55,11 +55,11 @@ void Presentation::demanderJouerPapier(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::papier);
     _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::lance,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
 }
 
 void Presentation::demanderQuitterApp(){
-    _laVue->majInterface(Modele::UnEtat::termine,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+   _laVue->quitterApp();
 }
 
 void Presentation::demanderInfosApp(){

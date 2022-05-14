@@ -16,7 +16,7 @@ class Modele
 
         ///* Une d�finition de type �num�r�
     public:
-        enum UnEtat {lance,termine};
+        enum UnEtat {accueil,enJeu};
         enum UnCoup {pierre, papier, ciseau, rien};
 
         ///* M�thodes du Mod�le

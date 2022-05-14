@@ -141,31 +141,24 @@ void ChifoumiVue::infosApp(){
 }
 
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
-    switch (e) {
-        case Modele::UnEtat::lance :
-            switch (c) {
+    if(e == Modele::UnEtat::enJeu){
+        switch (c) {
 
-                case Modele::UnCoup::papier:
-                    this->jouerFeuille(m,scoreJoueur,scoreMachine);
-                    break;
+            case Modele::UnCoup::papier:
+                this->jouerFeuille(m,scoreJoueur,scoreMachine);
+                break;
 
-                case Modele::UnCoup::ciseau:
-                    this->jouerCiseaux(m,scoreJoueur,scoreMachine);
-                    break;
+            case Modele::UnCoup::ciseau:
+                this->jouerCiseaux(m,scoreJoueur,scoreMachine);
+                break;
 
-                case Modele::UnCoup::pierre:
-                    this->jouerPierre(m,scoreJoueur,scoreMachine);
-                    break;
+            case Modele::UnCoup::pierre:
+                this->jouerPierre(m,scoreJoueur,scoreMachine);
+                break;
 
-                case Modele::UnCoup::rien:
-                    lancerPartie();
-                    break;
-            }
-            break;
-
-
-        case Modele::UnEtat::termine :
-            this->quitterApp();
-            break;
+            case Modele::UnCoup::rien:
+                lancerPartie();
+                break;
+        }
     }
 }
