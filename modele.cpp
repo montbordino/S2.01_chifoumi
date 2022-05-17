@@ -16,7 +16,8 @@ Modele::Modele():
     scoreJoueur(0),
     scoreMachine(0),
     coupJoueur(rien),
-    coupMachine(rien)
+    coupMachine(rien),
+    SCORE_MAX(5)
 {
 }
 
@@ -41,6 +42,10 @@ unsigned int Modele::getScoreJoueur() {
 
 unsigned int Modele::getScoreMachine() {
     return (*this).scoreMachine;
+}
+
+unsigned int Modele::getScoreMax() {
+    return (*this).SCORE_MAX;
 }
 
 void Modele::determinerGagnant()
@@ -74,7 +79,7 @@ int randMinMax(int min, int max){
 
 Modele::UnCoup Modele::genererUnCoup()
 {
-    UnCoup valeurGeneree;   // valeur � retourner
+    UnCoup valeurGeneree = rien;   // valeur � retourner
     int nb_au_hasard = randMinMax(0, 3);
     switch (nb_au_hasard)
     {

@@ -33,6 +33,10 @@ class Modele
             /* retourne le score du joueur */
         unsigned int getScoreMachine();
             /* retourne le score de la machine */
+
+        unsigned int getScoreMax();
+            /* retourne SCORE_MAX */
+
         void determinerGagnant();
             /* d�termine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
                en fonction du dernier coup jou� par chacun d'eux */
@@ -76,11 +80,12 @@ class Modele
 
          ///* Attributs du Mod�le
      private:
-        unsigned int scoreJoueur;   // score actuel du joueur
-        unsigned int scoreMachine;  // score actuel de la Machine
-        UnCoup coupJoueur;          // dernier coup jou� par le joueur
-        UnCoup coupMachine;         // dernier coup jou� par la machine
-        UnEtat _etat;
+        unsigned int scoreJoueur;       // score actuel du joueur
+        unsigned int scoreMachine;      // score actuel de la Machine
+        UnCoup coupJoueur;              // dernier coup jou� par le joueur
+        UnCoup coupMachine;             // dernier coup jou� par la machine
+        UnEtat _etat;                   // etat actuel de la partie
+        const unsigned int SCORE_MAX;   // score maximal atteignable par les joueurs
 };
 
 #endif // MODELE_H
