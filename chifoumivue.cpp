@@ -42,17 +42,6 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     // Qactions
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
     QObject::connect(ui->actionInformationsApp, SIGNAL(triggered()), c, SLOT(demanderInfosApp()));
-
-}
-
-void ChifoumiVue::supprConnexion(QObject *c)
-{
-    //pour se déconnecter de c
-    QObject::disconnect(ui->bNouvellePartie, SIGNAL(clicked()), c, SLOT(demanderLancerPartie()));
-    QObject::disconnect(ui->bPierre, SIGNAL(clicked()), c, SLOT(demanderJouerPierre()));
-    QObject::disconnect(ui->bFeuille, SIGNAL(clicked()), c, SLOT(demanderJouerFeuille()));
-    QObject::disconnect(ui->bCiseau, SIGNAL(clicked()), c, SLOT(demanderJouerCiseaux()));
-
 }
 
 void ChifoumiVue::lancerPartie(){
