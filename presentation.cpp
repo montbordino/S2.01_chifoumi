@@ -27,7 +27,6 @@ void Presentation::setVue(ChifoumiVue *v)
 }
 
 void Presentation::demanderLancerPartie(){
-
     // remise à zero des données
     _leModele->initCoups();
     _leModele->initScores();
@@ -36,26 +35,32 @@ void Presentation::demanderLancerPartie(){
 
 void Presentation::demanderJouerCiseau(){
     // choix du coup joueur machine au hasard
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::ciseau);
-    _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    (*this).demanderJouerTour();
 }
 
 void Presentation::demanderJouerPierre(){
     // choix du coup joueur machine au hasard
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::pierre);
-    _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    (*this).demanderJouerTour();
 }
 
 void Presentation::demanderJouerPapier(){
     // choix du coup joueur machine au hasard
-    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->setCoupJoueur(Modele::UnCoup::papier);
+    (*this).demanderJouerTour();
+}
+
+void Presentation::demanderJouerTour(){
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->determinerGagnant();
     _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    if (_leModele->getScoreJoueur() >= _leModele->getScoreMax()){
+        _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur");
+    }
+    else if (_leModele->getScoreMachine() >= _leModele->getScoreMax() ){
+        _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+    }
 }
 
 void Presentation::demanderQuitterApp(){

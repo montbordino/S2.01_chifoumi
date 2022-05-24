@@ -15,6 +15,7 @@ public:
     ChifoumiVue* getVue();
     void setModele(Modele *m);
     void setVue(ChifoumiVue *v);
+
 private:
     Modele *_leModele;
     ChifoumiVue *_laVue;
@@ -25,6 +26,7 @@ public slots:
     void demanderJouerCiseau();
     void demanderQuitterApp();
     void demanderInfosApp();
+    void demanderJouerTour();
 };
 
 #endif // PRESENTATION_H

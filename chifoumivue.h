@@ -62,6 +62,12 @@ public slots:
     void quitterApp();
 
     /**
+     * @brief affiche une fenetre de dialogue donnant les informations sur la victoire
+     *        et fini la partie
+     */
+    void afficherFinScore(int, QString);
+
+    /**
      * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox
      */
     void infosApp();

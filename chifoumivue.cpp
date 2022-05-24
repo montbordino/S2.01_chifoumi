@@ -1,6 +1,8 @@
 #include "chifoumivue.h"
 #include "ui_ChifoumiVue.h"
 #include <QMessageBox>
+#include <QDialog>
+
 ChifoumiVue::ChifoumiVue(QMainWindow *parent)
     : QMainWindow(parent)
     , ui(new Ui::ChifoumiVue)
@@ -108,10 +110,16 @@ void ChifoumiVue::quitterApp(){
 }
 
 void ChifoumiVue::infosApp(){
-    QString infos = tr("version : V3\n"
-                    "dernière modification : 14 mai 2022\n"
+    QString infos = tr("version : V4\n"
+                    "dernière modification : 24 mai 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
+}
+
+void ChifoumiVue::afficherFinScore(int score, QString nom) {
+    ui->groupBox->setEnabled(false);
+    const QString contenu = "Bravo " + nom + "! Vous gagnez la partie avec " + QString::number(score) + " points.";
+    QMessageBox::information(this, "Fin de Partie", contenu);
 }
 
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){

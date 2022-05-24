@@ -77,7 +77,6 @@ class Modele
             /* initialise � rien les attributs coupJoueur et coupMachine
                NON indispensable */
 
-
          ///* Attributs du Mod�le
      private:
         unsigned int scoreJoueur;       // score actuel du joueur
