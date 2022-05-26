@@ -185,15 +185,26 @@
             </property>
            </widget>
           </item>
-          <item alignment="Qt::AlignHCenter">
-           <widget class="QLabel" name="labelTemps">
-            <property name="styleSheet">
-             <string notr="true">color: #C0C0C0</string>
-            </property>
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Temps restant (s) : </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelTimeInt">
+              <property name="styleSheet">
+               <string notr="true">color: #C0C0C0</string>
+              </property>
+              <property name="text">
+               <string>30</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -339,12 +350,36 @@
       </layout>
      </widget>
     </item>
-    <item alignment="Qt::AlignRight">
-     <widget class="QPushButton" name="bNouvellePartie">
-      <property name="text">
-       <string>Nouvelle Partie</string>
-      </property>
-     </widget>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bPause">
+        <property name="text">
+         <string>Pause</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="bNouvellePartie">
+        <property name="text">
+         <string>Nouvelle Partie</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

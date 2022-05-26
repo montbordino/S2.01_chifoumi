@@ -58,6 +58,8 @@ private slots:
      */
     void finManche(int=0,int=0);
 
+    void etatInitial();
+
 public slots:
     void quitterApp();
 
@@ -71,5 +73,7 @@ public slots:
      * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox
      */
     void infosApp();
+
+    void majTimer(QString);
 };
 #endif // CHIFOUMIVUE_H

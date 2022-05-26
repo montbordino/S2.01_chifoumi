@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "modele.h"
+#include <QTimer>
 
 class ChifoumiVue;
 class Presentation : public QObject
@@ -19,13 +20,18 @@ public:
 private:
     Modele *_leModele;
     ChifoumiVue *_laVue;
+    QTimer *timer = new QTimer(this);
+    int tempsRestant;
+    const int tempsFinal = 0;
 public slots:
     void demanderLancerPartie();
     void demanderJouerPierre();
     void demanderJouerPapier();
     void demanderJouerCiseau();
+    void demanderPause();
     void demanderQuitterApp();
     void demanderInfosApp();
+    void update();
     void demanderJouerTour();
 };
 

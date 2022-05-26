@@ -4,6 +4,8 @@
 Presentation::Presentation(Modele *m, QObject *parent)
     : QObject{parent}, _leModele(m)
 {
+    connect(timer,SIGNAL(timeout()),this,SLOT(update()));
+    timer->setInterval(1000);
 }
 
 Modele *Presentation::getModele()
@@ -31,6 +33,8 @@ void Presentation::demanderLancerPartie(){
     _leModele->initCoups();
     _leModele->initScores();
     _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    timer->start();
+    tempsRestant=30;
 }
 
 void Presentation::demanderJouerCiseau(){
@@ -70,4 +74,25 @@ void Presentation::demanderQuitterApp(){
 
 void Presentation::demanderInfosApp(){
     _laVue->infosApp();
+}
+
+void Presentation::update()
+{
+    QString tempAfficher;
+    if (tempsRestant>tempsFinal)
+    {
+        tempsRestant--;
+        tempAfficher = QString::number(tempsRestant);
+        _laVue->majTimer(tempAfficher);
+    }
+    else
+    {
+        _laVue->majInterface(Modele::UnEtat::accueil);
+    }
+}
+
+void Presentation::demanderPause()
+{
+    timer->stop();
+    _laVue->majInterface(Modele::UnEtat::pause);
 }

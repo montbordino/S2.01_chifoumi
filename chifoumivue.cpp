@@ -2,6 +2,7 @@
 #include "ui_ChifoumiVue.h"
 #include <QMessageBox>
 #include <QDialog>
+#include <QTimer>
 
 ChifoumiVue::ChifoumiVue(QMainWindow *parent)
     : QMainWindow(parent)
@@ -40,6 +41,7 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     QObject::connect(ui->bPierre, SIGNAL(clicked()), c, SLOT(demanderJouerPierre()));
     QObject::connect(ui->bFeuille, SIGNAL(clicked()), c, SLOT(demanderJouerPapier()));
     QObject::connect(ui->bCiseau, SIGNAL(clicked()), c, SLOT(demanderJouerCiseau()));
+    QObject::connect(ui->bPause, SIGNAL(clicked()),c, SLOT(demanderPause()));
 
     // Qactions
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
@@ -146,4 +148,14 @@ void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup 
                 break;
         }
     }
+}
+
+void ChifoumiVue::majTimer(QString tempAfficher)
+{
+    ui->labelTimeInt->setText(tempAfficher);
+}
+
+void ChifoumiVue::etatInitial()
+{
+    ui->groupBox->setEnabled(false);
 }
