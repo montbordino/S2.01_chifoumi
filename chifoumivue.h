@@ -58,8 +58,6 @@ private slots:
      */
     void finManche(int=0,int=0);
 
-    void etatInitial();
-
 public slots:
     void quitterApp();
 
@@ -74,6 +72,6 @@ public slots:
      */
     void infosApp();
 
-    void majTimer(QString);
+    void majTimer(int);
 };
 #endif // CHIFOUMIVUE_H

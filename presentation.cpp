@@ -32,7 +32,8 @@ void Presentation::demanderLancerPartie(){
     // remise à zero des données
     _leModele->initCoups();
     _leModele->initScores();
-    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _leModele->setEtatPartie(Modele::UnEtat::enJeu);
+    _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
     timer->start();
     tempsRestant=30;
 }
@@ -58,11 +59,13 @@ void Presentation::demanderJouerPapier(){
 void Presentation::demanderJouerTour(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->determinerGagnant();
-    _laVue->majInterface(Modele::UnEtat::enJeu,_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
     if (_leModele->getScoreJoueur() >= _leModele->getScoreMax()){
+        _leModele->setEtatPartie(Modele::UnEtat::accueil);
         _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur");
     }
     else if (_leModele->getScoreMachine() >= _leModele->getScoreMax() ){
+        _leModele->setEtatPartie(Modele::UnEtat::accueil);
         _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
     }
 }
@@ -79,15 +82,26 @@ void Presentation::demanderInfosApp(){
 void Presentation::update()
 {
     QString tempAfficher;
-    if (tempsRestant>tempsFinal)
-    {
-        tempsRestant--;
-        tempAfficher = QString::number(tempsRestant);
-        _laVue->majTimer(tempAfficher);
-    }
-    else
-    {
-        _laVue->majInterface(Modele::UnEtat::accueil);
+    if (_leModele->getEtat() == Modele::enJeu){
+        if (tempsRestant>tempsFinal)
+        {
+            tempsRestant--;
+            _laVue->majTimer(tempsRestant);
+        }
+        else
+        {
+            _leModele->setEtatPartie(Modele::UnEtat::accueil);
+            if (_leModele->getScoreJoueur() > _leModele->getScoreMachine()){
+                _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur");
+
+            }
+            else if (_leModele->getScoreMachine() > _leModele->getScoreJoueur() ){
+                _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+            }
+            else {
+                _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+            }
+        }
     }
 }
 

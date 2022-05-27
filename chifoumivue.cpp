@@ -51,7 +51,7 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
 void ChifoumiVue::lancerPartie(){
     ui->groupBox->setEnabled(true);
     setBlue('J');
-
+    majTimer(30);
     // affichage à l'écran de la remise à zero
     ui->labelScoreJoueur->setText(QString::number(0));
     ui->labelScoreMachine->setText(QString::number(0));
@@ -125,37 +125,38 @@ void ChifoumiVue::afficherFinScore(int score, QString nom) {
 }
 
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
-    if(e == Modele::UnEtat::enJeu){
-        switch (c) {
+    switch(e) {
+        case Modele::UnEtat::enJeu:
+            switch (c) {
+                case Modele::UnCoup::papier:
+                    ui->labelImageJoueur->setPixmap(*feuille);
+                    tourMachine(m,scoreJoueur,scoreMachine);
+                    break;
 
-            case Modele::UnCoup::papier:
-                ui->labelImageJoueur->setPixmap(*feuille);
-                tourMachine(m,scoreJoueur,scoreMachine);
-                break;
+                case Modele::UnCoup::ciseau:
+                    ui->labelImageJoueur->setPixmap(*ciseau);
+                    tourMachine(m,scoreJoueur,scoreMachine);
+                    break;
 
-            case Modele::UnCoup::ciseau:
-                ui->labelImageJoueur->setPixmap(*ciseau);
-                tourMachine(m,scoreJoueur,scoreMachine);
-                break;
+                case Modele::UnCoup::pierre:
+                    ui->labelImageJoueur->setPixmap(*pierre);
+                    tourMachine(m,scoreJoueur,scoreMachine);
+                    break;
 
-            case Modele::UnCoup::pierre:
-                ui->labelImageJoueur->setPixmap(*pierre);
-                tourMachine(m,scoreJoueur,scoreMachine);
-                break;
-
-            case Modele::UnCoup::rien:
-                lancerPartie();
-                break;
-        }
+                case Modele::UnCoup::rien:
+                    lancerPartie();
+                    break;
+            }
+            break;
+        case  Modele::UnEtat::accueil:
+            majTimer(30);
+            break;
+        case  Modele::UnEtat::pause:
+             break;
     }
 }
 
-void ChifoumiVue::majTimer(QString tempAfficher)
+void ChifoumiVue::majTimer(int tempsRestant)
 {
-    ui->labelTimeInt->setText(tempAfficher);
-}
-
-void ChifoumiVue::etatInitial()
-{
-    ui->groupBox->setEnabled(false);
+    ui->labelTimeInt->setText(QString::number(tempsRestant));
 }
