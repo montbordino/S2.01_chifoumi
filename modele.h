@@ -64,6 +64,10 @@ class Modele
              /* initialise l'attribut coupMachine avec la valeur
                du param�tre p_score */
 
+        void setEtatPartie(UnEtat etatPartie);
+             /* initialise l'attribut etat avec la valeur
+          du param�tre etatPartie */
+
         // Autres modificateurs
          void majScores(char p_gagnant);
             /* Mise � jour des scores en fonction des r�gles de gestion actuelles :

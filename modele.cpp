@@ -7,7 +7,6 @@
 #include "modele.h"
 
 #include <cstdlib>
-#include <ctime>
 
 
     ///* ---- PARTIE MOD�LE ---------------------------
@@ -115,6 +114,10 @@ void Modele::setScoreJoueur(unsigned int p_score) {
 
 void Modele::setScoreMachine(unsigned int p_score) {
     (*this).scoreMachine=p_score;
+}
+
+void Modele::setEtatPartie(UnEtat etatPartie) {
+    (*this)._etat=etatPartie;
 }
 
 void Modele::majScores(char p_gagnant) {
