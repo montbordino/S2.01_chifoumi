@@ -9,6 +9,8 @@ ChifoumiVue::ChifoumiVue(QMainWindow *parent)
     , ui(new Ui::ChifoumiVue)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Chifoumi");
+
     //création des QPixmap
     pierre=new QPixmap(":/chifoumi/images/pierre.gif");
     feuille=new QPixmap(":/chifoumi/images/papier.gif");
@@ -112,8 +114,8 @@ void ChifoumiVue::quitterApp(){
 }
 
 void ChifoumiVue::infosApp(){
-    QString infos = tr("version : V4\n"
-                    "dernière modification : 24 mai 2022\n"
+    QString infos = tr("version : V5\n"
+                    "dernière modification : 29 mai 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
