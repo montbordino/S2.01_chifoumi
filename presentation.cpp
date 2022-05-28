@@ -63,11 +63,11 @@ void Presentation::demanderJouerTour(){
     _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
     if (_leModele->getScoreJoueur() >= _leModele->getScoreMax()){
         _leModele->setEtatPartie(Modele::UnEtat::accueil);
-        _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur");
+        _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur", _leModele->getTempsRestant(), _leModele->getTempsDepart());
     }
     else if (_leModele->getScoreMachine() >= _leModele->getScoreMax() ){
         _leModele->setEtatPartie(Modele::UnEtat::accueil);
-        _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+        _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine", _leModele->getTempsRestant(), _leModele->getTempsDepart());
     }
 }
 
@@ -82,7 +82,6 @@ void Presentation::demanderInfosApp(){
 
 void Presentation::update()
 {
-    QString tempAfficher;
     if (_leModele->getEtat() == Modele::enJeu){
         if (_leModele->getTempsRestant() > ZERO)
         {
@@ -93,14 +92,14 @@ void Presentation::update()
         {
             _leModele->setEtatPartie(Modele::UnEtat::accueil);
             if (_leModele->getScoreJoueur() > _leModele->getScoreMachine()){
-                _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur");
+                _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur", _leModele->getTempsRestant(), _leModele->getTempsDepart());
 
             }
             else if (_leModele->getScoreMachine() > _leModele->getScoreJoueur() ){
-                _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+                _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine", _leModele->getTempsRestant(), _leModele->getTempsDepart());
             }
             else {
-                _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine");
+                _laVue->afficherFinScore(_leModele->getScoreMachine(), "égalité", _leModele->getTempsRestant(), _leModele->getTempsDepart());
             }
         }
     }
@@ -108,6 +107,15 @@ void Presentation::update()
 
 void Presentation::demanderPause()
 {
-    timer->stop();
-    _laVue->majInterface(Modele::UnEtat::pause);
+    if (_leModele->getEtat() == Modele::UnEtat::enJeu){
+        timer->stop();
+        _leModele->setEtatPartie(Modele::UnEtat::pause);
+        _laVue->majInterface(_leModele->getEtat());
+    }
+    else if (_leModele->getEtat() == Modele::UnEtat::pause) {
+        timer->start();
+        _leModele->setEtatPartie(Modele::UnEtat::enJeu);
+        _laVue->majInterface(_leModele->getEtat());
+    }
+
 }

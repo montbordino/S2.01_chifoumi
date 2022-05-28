@@ -65,7 +65,7 @@ public slots:
      * @brief affiche une fenetre de dialogue donnant les informations sur la victoire
      *        et fini la partie
      */
-    void afficherFinScore(int, QString);
+    void afficherFinScore(int, QString, unsigned int, unsigned int);
 
     /**
      * @brief affiche la version de l’application, la date de création, les auteurs dans une messageBox

@@ -118,41 +118,63 @@ void ChifoumiVue::infosApp(){
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
 
-void ChifoumiVue::afficherFinScore(int score, QString nom) {
+void ChifoumiVue::afficherFinScore(int score, QString nom, unsigned int tempsRestant, unsigned int tempsDepart) {
     ui->groupBox->setEnabled(false);
-    const QString contenu = "Bravo " + nom + "! Vous gagnez la partie avec " + QString::number(score) + " points.";
-    QMessageBox::information(this, "Fin de Partie", contenu);
+    QString titre;
+    QString contenu;
+    if (tempsRestant <= 0){
+        titre = "Fin de partie temps fini";
+        if (nom == "égalité"){
+            contenu = "Helas chers joueurs, temps de jeu fini ! Les deux joueurs finissent exaequo avec chacun " + QString::number(score) + " points.";
+        }
+        else {
+            contenu = "Helas chers joueurs, temps de jeu fini ! " + nom +" termine toutefois mieux avec " + QString::number(score) + " points.";
+        }
+    }
+    else {
+        titre = "Fin de partie gagnant";
+        contenu = "Bravo " + nom + "! Vous gagnez la partie avec " + QString::number(score) + " points en " + QString::number(tempsDepart - tempsRestant) + " secondes.";
+    }
+    QMessageBox::information(this, titre, contenu);
 }
 
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
     switch(e) {
         case Modele::UnEtat::enJeu:
-            switch (c) {
-                case Modele::UnCoup::papier:
-                    ui->labelImageJoueur->setPixmap(*feuille);
-                    tourMachine(m,scoreJoueur,scoreMachine);
-                    break;
+            if (ui->bPause->text() == "Reprise jeu") {
+                ui->groupBox->setEnabled(true);
+                ui->bPause->setText("Pause");
+            }
+            else {
+                switch (c) {
+                    case Modele::UnCoup::papier:
+                        ui->labelImageJoueur->setPixmap(*feuille);
+                        tourMachine(m,scoreJoueur,scoreMachine);
+                        break;
 
-                case Modele::UnCoup::ciseau:
-                    ui->labelImageJoueur->setPixmap(*ciseau);
-                    tourMachine(m,scoreJoueur,scoreMachine);
-                    break;
+                    case Modele::UnCoup::ciseau:
+                        ui->labelImageJoueur->setPixmap(*ciseau);
+                        tourMachine(m,scoreJoueur,scoreMachine);
+                        break;
 
-                case Modele::UnCoup::pierre:
-                    ui->labelImageJoueur->setPixmap(*pierre);
-                    tourMachine(m,scoreJoueur,scoreMachine);
-                    break;
+                    case Modele::UnCoup::pierre:
+                        ui->labelImageJoueur->setPixmap(*pierre);
+                        tourMachine(m,scoreJoueur,scoreMachine);
+                        break;
 
-                case Modele::UnCoup::rien:
-                    lancerPartie();
-                    break;
+                    case Modele::UnCoup::rien:
+                        lancerPartie();
+                        break;
+                }
             }
             break;
         case  Modele::UnEtat::accueil:
             majTimer(30);
             break;
         case  Modele::UnEtat::pause:
-             break;
+            ui->groupBox->setEnabled(false);
+            ui->bPause->setText("Reprise jeu");
+            break;
     }
 }
 
