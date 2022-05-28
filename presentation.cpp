@@ -35,7 +35,8 @@ void Presentation::demanderLancerPartie(){
     _leModele->setEtatPartie(Modele::UnEtat::enJeu);
     _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
     timer->start();
-    tempsRestant=30;
+    _leModele->setTempsDepart(30);
+    _leModele->setTempsRestant(_leModele->getTempsDepart());
 }
 
 void Presentation::demanderJouerCiseau(){
@@ -83,10 +84,10 @@ void Presentation::update()
 {
     QString tempAfficher;
     if (_leModele->getEtat() == Modele::enJeu){
-        if (tempsRestant>tempsFinal)
+        if (_leModele->getTempsRestant() > ZERO)
         {
-            tempsRestant--;
-            _laVue->majTimer(tempsRestant);
+            _leModele->setTempsRestant(_leModele->getTempsRestant() - 1);
+            _laVue->majTimer(_leModele->getTempsRestant());
         }
         else
         {

@@ -21,8 +21,8 @@ private:
     Modele *_leModele;
     ChifoumiVue *_laVue;
     QTimer *timer = new QTimer(this);
-    int tempsRestant;
-    const int tempsFinal = 0;
+
+    const unsigned short int ZERO = 0;
 public slots:
     void demanderLancerPartie();
     void demanderJouerPierre();
