@@ -35,22 +35,32 @@ class Modele
             /* retourne le score de la machine */
 
         unsigned int getScoreMax();
-            /* retourne SCORE_MAX */
+            /* retourne scoreMax */
 
-        void determinerGagnant();
-            /* d�termine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
-               en fonction du dernier coup jou� par chacun d'eux */
+        unsigned int getTempsRestant();
+            /* retourne le temps restant */
+
+        unsigned int getTempsDepart();
+            /* retourne le temps de départ */
 
         UnEtat getEtat();
-
          ///* M�thodes utilitaires du Mod�le
     public :
         UnCoup genererUnCoup();
     /* retourne une valeur al�atoire = pierre, papier ou ciseau.
        Utilis�e pour faire jouer la machine */
 
+        void determinerGagnant();
+            /* d�termine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
+               en fonction du dernier coup jou� par chacun d'eux */
         // Setters
     public:
+        void setTempsDepart(unsigned int temps);
+
+        void setTempsRestant(unsigned int temps);
+
+        void setScoreMax(unsigned int score);
+
         void setCoupJoueur(UnCoup p_coup);
             /* initialise l'attribut coupJoueur avec la valeur
                du param�tre p_coup */
@@ -88,7 +98,9 @@ class Modele
         UnCoup coupJoueur;              // dernier coup jou� par le joueur
         UnCoup coupMachine;             // dernier coup jou� par la machine
         UnEtat _etat;                   // etat actuel de la partie
-        const unsigned int SCORE_MAX;   // score maximal atteignable par les joueurs
+        unsigned int scoreMax;   // score maximal atteignable par les joueurs
+        int tempsRestant;
+        unsigned int tempsDepart;
 };
 
 #endif // MODELE_H

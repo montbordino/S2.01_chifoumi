@@ -16,7 +16,7 @@ Modele::Modele():
     scoreMachine(0),
     coupJoueur(rien),
     coupMachine(rien),
-    SCORE_MAX(5)
+    scoreMax(5)
 {
 }
 
@@ -44,7 +44,15 @@ unsigned int Modele::getScoreMachine() {
 }
 
 unsigned int Modele::getScoreMax() {
-    return (*this).SCORE_MAX;
+    return (*this).scoreMax;
+}
+
+unsigned int Modele::getTempsDepart() {
+    return (*this).tempsDepart;
+}
+
+unsigned int Modele::getTempsRestant() {
+    return (*this).tempsRestant;
 }
 
 void Modele::determinerGagnant()
@@ -118,6 +126,18 @@ void Modele::setScoreMachine(unsigned int p_score) {
 
 void Modele::setEtatPartie(UnEtat etatPartie) {
     (*this)._etat=etatPartie;
+}
+
+void Modele::setTempsDepart(unsigned int temps) {
+    (*this).tempsDepart=temps;
+}
+
+void Modele::setTempsRestant(unsigned int temps) {
+    (*this).tempsRestant=temps;
+}
+
+void Modele::setScoreMax(unsigned int score) {
+    (*this).scoreMax=score;
 }
 
 void Modele::majScores(char p_gagnant) {
