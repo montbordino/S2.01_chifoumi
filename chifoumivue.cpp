@@ -115,7 +115,7 @@ void ChifoumiVue::quitterApp(){
 
 void ChifoumiVue::infosApp(){
     QString infos = tr("version : V5\n"
-                    "dernière modification : 29 mai 2022\n"
+                    "dernière modification : 30 mai 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }

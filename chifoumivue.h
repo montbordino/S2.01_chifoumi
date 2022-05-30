@@ -72,6 +72,9 @@ public slots:
      */
     void infosApp();
 
+    /**
+     * @brief affiche à l'écran le timer représenté par un int
+     */
     void majTimer(int);
 };
 #endif // CHIFOUMIVUE_H

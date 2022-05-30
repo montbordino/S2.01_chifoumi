@@ -31,8 +31,10 @@ public slots:
     void demanderPause();
     void demanderQuitterApp();
     void demanderInfosApp();
-    void update();
     void demanderJouerTour();
+
+    // decremente le QTimer et l'affiche à l'écran. S'occupe également de la fin de partie si le temps atteint ZERO
+    void update();
 };
 
 #endif // PRESENTATION_H
