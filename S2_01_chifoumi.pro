@@ -10,17 +10,20 @@ CONFIG += c++11
 
 SOURCES += \
     chifoumivue.cpp \
+    dialog.cpp \
     main.cpp \
     modele.cpp \
     presentation.cpp
 
 HEADERS += \
     chifoumivue.h \
+    dialog.h \
     modele.h \
     presentation.h
 
 FORMS += \
-    ChifoumiVue.ui
+    ChifoumiVue.ui \
+    dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
