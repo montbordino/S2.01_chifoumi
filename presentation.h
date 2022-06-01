@@ -4,6 +4,7 @@
 #include <QObject>
 #include "modele.h"
 #include <QTimer>
+#include "dialog.h"
 
 class ChifoumiVue;
 class Presentation : public QObject
@@ -16,6 +17,7 @@ public:
     ChifoumiVue* getVue();
     void setModele(Modele *m);
     void setVue(ChifoumiVue *v);
+    Dialog * questionnaire;
 
 private:
     Modele *_leModele;
@@ -32,6 +34,7 @@ public slots:
     void demanderQuitterApp();
     void demanderInfosApp();
     void demanderJouerTour();
+    void demanderOuvrirParameres();
 
     // decremente le QTimer et l'affiche à l'écran. S'occupe également de la fin de partie si le temps atteint ZERO
     void update();

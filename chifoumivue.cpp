@@ -48,9 +48,11 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     // Qactions
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
     QObject::connect(ui->actionInformationsApp, SIGNAL(triggered()), c, SLOT(demanderInfosApp()));
+    QObject::connect(ui->actionParametrer, SIGNAL(triggered()), c, SLOT(demanderOuvrirParameres()));
 }
 
 void ChifoumiVue::lancerPartie(){
+    ui->actionParametrer->setEnabled(false);
     ui->groupBox->setEnabled(true);
     setBlue('J');
     majTimer(30);

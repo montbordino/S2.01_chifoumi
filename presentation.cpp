@@ -83,7 +83,7 @@ void Presentation::demanderInfosApp(){
 void Presentation::update()
 {
     if (_leModele->getEtat() == Modele::enJeu){
-        if (_leModele->getTempsRestant() > ZERO)
+        if (_leModele->getTempsRestant() >= ZERO)
         {
             _leModele->setTempsRestant(_leModele->getTempsRestant() - 1);
             _laVue->majTimer(_leModele->getTempsRestant());
@@ -119,3 +119,17 @@ void Presentation::demanderPause()
     }
 
 }
+
+void Presentation::demanderOuvrirParameres()
+{
+    questionnaire = new Dialog(getVue());
+    int retour = questionnaire->exec();
+    switch (retour) {
+    case QDialog::Accepted:
+        break;
+
+    case QDialog::Rejected:
+        break;
+    }
+}
+
