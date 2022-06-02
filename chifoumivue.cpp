@@ -51,16 +51,22 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     QObject::connect(ui->actionParametrer, SIGNAL(triggered()), c, SLOT(demanderOuvrirParameres()));
 }
 
-void ChifoumiVue::lancerPartie(){
+void ChifoumiVue::lancerPartie(QString nom,int scoreMax, int tempsMax){
     ui->actionParametrer->setEnabled(false);
     ui->groupBox->setEnabled(true);
     setBlue('J');
-    majTimer(30);
+    parametrerPartie(nom,scoreMax,tempsMax);
     // affichage à l'écran de la remise à zero
     ui->labelScoreJoueur->setText(QString::number(0));
     ui->labelScoreMachine->setText(QString::number(0));
     ui->labelImageJoueur->setPixmap(*rien);
     ui->labelImageMachine->setPixmap(*rien);
+}
+
+void ChifoumiVue::parametrerPartie(QString nom,int scoreMax, int tempsMax){
+    ui->labelTimeInt->setText(QString::number(tempsMax));
+    ui->labelScoreTotal->setText(QString::number(scoreMax));
+    ui->labelIntituleJoueur->setText(nom);
 }
 
 void ChifoumiVue::tourMachine(Modele::UnCoup m,int scoreJoueur,int scoreMachine){
@@ -116,8 +122,8 @@ void ChifoumiVue::quitterApp(){
 }
 
 void ChifoumiVue::infosApp(){
-    QString infos = tr("version : V5\n"
-                    "dernière modification : 30 mai 2022\n"
+    QString infos = tr("version : V6\n"
+                    "dernière modification : 02 juin 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
@@ -142,7 +148,7 @@ void ChifoumiVue::afficherFinScore(int score, QString nom, unsigned int tempsRes
     QMessageBox::information(this, titre, contenu);
 }
 
-void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine){
+void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine,int scoreMax,int tempsMax,QString nom){
     switch(e) {
         case Modele::UnEtat::enJeu:
             if (ui->bPause->text() == "Reprise jeu") {
@@ -167,13 +173,14 @@ void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup 
                         break;
 
                     case Modele::UnCoup::rien:
-                        lancerPartie();
+                        lancerPartie(nom,scoreMax,tempsMax);
                         break;
                 }
             }
             break;
         case  Modele::UnEtat::accueil:
-            majTimer(30);
+            parametrerPartie(nom,scoreMax,tempsMax);
+
             break;
         case  Modele::UnEtat::pause:
             ui->groupBox->setEnabled(false);

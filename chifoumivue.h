@@ -21,7 +21,7 @@ public:
     void nvlleConnexion(QObject *c);
     void supprConnexion(QObject *c);
     // ordres reçus par la présentation
-    void majInterface (Modele::UnEtat, Modele::UnCoup=Modele::UnCoup::rien,Modele::UnCoup=Modele::UnCoup::rien,int=0,int=0);
+    void majInterface (Modele::UnEtat, Modele::UnCoup=Modele::UnCoup::rien,Modele::UnCoup=Modele::UnCoup::rien,int=0,int=0,int=5,int=30,QString="Vous");
 
 private:
     Ui::ChifoumiVue *ui;
@@ -35,7 +35,9 @@ private slots:
     /**
      * @brief lance une nouvelle partie en effacant les données de la précédente et met la couleur bleu sur le joueur
      */
-    void lancerPartie();
+    void lancerPartie(QString="vous",int=5,int=30);
+
+    void parametrerPartie(QString="vous",int=5,int=30);
 
     /**
      * @brief met la couleur bleu sur la machine, choisis son coup au hasard et l'affiche à l'écran puis lance finPartie()

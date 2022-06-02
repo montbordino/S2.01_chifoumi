@@ -3,6 +3,7 @@
 
 #include <QDialog>
 
+
 namespace Ui {
 class Dialog;
 }
@@ -14,9 +15,17 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+    QString getNom();
+    int getScore();
+    int getTemps();
 
 private:
     Ui::Dialog *ui;
+    QString nom;
+    int scoreMax;
+    int temp;
+
+
 };
 
 #endif // DIALOG_H

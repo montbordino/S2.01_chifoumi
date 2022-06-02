@@ -33,10 +33,8 @@ void Presentation::demanderLancerPartie(){
     _leModele->initCoups();
     _leModele->initScores();
     _leModele->setEtatPartie(Modele::UnEtat::enJeu);
-    _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+    _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(),_leModele->getScoreMax(),_leModele->getTempsDepart(),questionnaire->getNom());
     timer->start();
-    _leModele->setTempsDepart(30);
-    _leModele->setTempsRestant(_leModele->getTempsDepart());
 }
 
 void Presentation::demanderJouerCiseau(){
@@ -83,7 +81,7 @@ void Presentation::demanderInfosApp(){
 void Presentation::update()
 {
     if (_leModele->getEtat() == Modele::enJeu){
-        if (_leModele->getTempsRestant() >= ZERO)
+        if (_leModele->getTempsRestant() > ZERO)
         {
             _leModele->setTempsRestant(_leModele->getTempsRestant() - 1);
             _laVue->majTimer(_leModele->getTempsRestant());
@@ -126,6 +124,11 @@ void Presentation::demanderOuvrirParameres()
     int retour = questionnaire->exec();
     switch (retour) {
     case QDialog::Accepted:
+        _leModele->setEtatPartie(Modele::UnEtat::accueil);
+        _leModele->setScoreMax(questionnaire->getScore());
+        _leModele->setTempsDepart(questionnaire->getTemps());
+        _leModele->setTempsRestant(questionnaire->getTemps());
+        _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(),questionnaire->getScore(),questionnaire->getTemps(),questionnaire->getNom());
         break;
 
     case QDialog::Rejected:

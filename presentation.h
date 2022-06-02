@@ -17,12 +17,13 @@ public:
     ChifoumiVue* getVue();
     void setModele(Modele *m);
     void setVue(ChifoumiVue *v);
-    Dialog * questionnaire;
+
 
 private:
     Modele *_leModele;
     ChifoumiVue *_laVue;
     QTimer *timer = new QTimer(this);
+    Dialog * questionnaire;
 
     const unsigned short int ZERO = 0;
 public slots:
