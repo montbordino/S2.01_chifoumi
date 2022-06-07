@@ -65,8 +65,11 @@ void ChifoumiVue::lancerPartie(QString nom,int scoreMax, int tempsMax){
 }
 
 void ChifoumiVue::parametrerPartie(QString nom,int scoreMax, int tempsMax){
+    //Mettre le labelTimeInt sur ce que l'utilisateur à saisit dans le champ temp
     ui->labelTimeInt->setText(QString::number(tempsMax));
+    //Mettre le labelScoreTotal sur ce que l'utilisateur à saisit dans le champ score
     ui->labelScoreTotal->setText(QString::number(scoreMax));
+    //Mettre le labelIntituleJoueur sur ce que l'utilisateur à saisit dans le champ nom
     ui->labelIntituleJoueur->setText(nom);
 }
 
@@ -107,12 +110,15 @@ void ChifoumiVue::setBlue(char cible){
 void ChifoumiVue::definirImageMachine(Modele::UnCoup coupMachine){
     switch (coupMachine) {
     case Modele::pierre:
+        //mettre le label sur pierre
         ui->labelImageMachine->setPixmap(*pierre);
         break;
     case Modele::ciseau:
+        //mettre le label sur ciseau
         ui->labelImageMachine->setPixmap(*ciseau);
         break;
     default:
+        //mettre le label sur feuille
         ui->labelImageMachine->setPixmap(*feuille);
         break;
     }
@@ -151,42 +157,55 @@ void ChifoumiVue::afficherFinScore(int score, QString nom, unsigned int tempsRes
 
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine,int scoreMax,int tempsMax,QString nom){
     switch(e) {
+
+        //Lorsque que l'état du chifoumi est en jeu
         case Modele::UnEtat::enJeu:
 
-            if (ui->bPause->text() == "Reprise jeu") {
+            //Si le bouton pause est en pause
+            if (ui->bPause->text() == "Reprise jeu")
+            {
                 ui->groupBox->setEnabled(true);
                 ui->bPause->setText("Pause");
             }
             else {
-                switch (c) {
+                // Switch sur le coup du joueur
+                switch (c)
+                {
                     case Modele::UnCoup::papier:
+                        //Modification du labelImageJoueur pour afficher la feuille
                         ui->labelImageJoueur->setPixmap(*feuille);
+                        //Modification de l'affichage des scores
                         tourMachine(m,scoreJoueur,scoreMachine);
                         break;
 
                     case Modele::UnCoup::ciseau:
+                        //Modification du labelImageJoueur pour afficher le ciseau
                         ui->labelImageJoueur->setPixmap(*ciseau);
+                        //Modification de l'affichage des scores
                         tourMachine(m,scoreJoueur,scoreMachine);
                         break;
 
                     case Modele::UnCoup::pierre:
+                        //Modification du labelImageJoueur pour afficher le ciseau
                         ui->labelImageJoueur->setPixmap(*pierre);
+                        //Modification de l'affichage des scores
                         tourMachine(m,scoreJoueur,scoreMachine);
                         break;
 
                     case Modele::UnCoup::rien:
+                        //Modification de l'affichage des scores
                         lancerPartie(nom,scoreMax,tempsMax);
                         break;
                 }
             }
             break;
+
+        //Lorsque le jeu est dans l'accueil
         case  Modele::UnEtat::accueil:
             parametrerPartie(nom,scoreMax,tempsMax);
             break;
 
-        case Modele::UnEtat::nonConnecte:
-            break;
-
+        //Lorsque le jeu est en pause
         case  Modele::UnEtat::pause:
             ui->groupBox->setEnabled(false);
             ui->bPause->setText("Reprise jeu");

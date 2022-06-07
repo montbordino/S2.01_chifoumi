@@ -43,7 +43,7 @@ private:
     Ui::Connexion *ui;              // UI de la connexion
     QString id;                     // identifiant de la connexion
     QString mdp;                    // Mot de passe de la connexion
-    QSqlDatabase db;
+    QSqlDatabase db;                //base de donnée de la saé
 public slots:
 
     /**

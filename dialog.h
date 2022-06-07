@@ -15,15 +15,30 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+
+    /**
+     * @brief retourne le nom saisit par l'utilisateur
+     * @return QString
+     */
     QString getNom();
+
+    /**
+     * @brief retourne le score saisit par l'utilisateur
+     * @return int
+     */
     int getScore();
+
+    /**
+     * @brief retourne le temps saisit par l'utilisateur
+     * @return int
+     */
     int getTemps();
 
 private:
-    Ui::Dialog *ui;
-    QString nom;
-    int scoreMax;
-    int temp;
+    Ui::Dialog *ui;             //le ui du dialog
+    QString nom;                //nom saisit
+    int scoreMax;               //score saisit
+    int temp;                   //temp saisit
 
 
 };

@@ -1,6 +1,7 @@
 #include "connexion.h"
 #include "ui_connexion.h"
 #include <QMessageBox>
+#include <QDebug>
 
 Connexion::Connexion(QWidget *v) :
     QDialog(v),
@@ -46,29 +47,32 @@ void Connexion::valider(){
     //Ouverture de la base de donnée
     this->db.open();
 
-    //Requete permetant de récuperer tout les identifiants et mots de passe associés
-    QSqlQuery query("SELECT * FROM Joueur");
-
     //Variables temporels
+    //variables saisit par l'utilisateur
+    QString idUtilisateur;
+    QString mdpUtilisateur;
+    //variables de la requete
     QString idRequete;
     QString mdpRequete;
-    bool valide = false;
+
+    //Récupération des champs saisit par l'utilisateur
+    idUtilisateur=this->getId();
+    mdpUtilisateur=this->getMdp();
+
+    //Requete permetant de récuperer tout les identifiants et mots de passe associés
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Joueur WHERE nom=? and MDP=?");
+    query.addBindValue(idUtilisateur);
+    query.addBindValue(mdpUtilisateur);
+    query.exec();
 
     //Vérification
-    while(query.next()){
-        idRequete = query.value(1).toString();          //Vérification de l'identifiant
-        mdpRequete = query.value(2).toString();         //Vérification du mot de passe
-
-        //Si les champs saisit correspondent à ceux de la requete
-        if (idRequete==this->getId() && mdpRequete==this->getMdp()){
-
-            //Fermeture de cette boite de dialog
-            this->close();
-            valide = true;
-        }
+    if(query.next()){
+        this->close();
+        id=query.value(1).toString();
+        mdp=query.value(2).toString();
     }
-    if (!(valide)){
+    else {
         QMessageBox::information(this,"Erreur","L'identifiant ou le mot de passe sont incorrects",QMessageBox::Ok);
-
     }
 }
