@@ -171,21 +171,35 @@ Modele::UnEtat Modele::getEtat()
 }
 
 void Modele::enregistrerPartie(const int &indexJoueur){
+    //lié la connexion ODBC
     db=QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("S2.01");
+
+    //Ouvre la base donnée
     this->db.open();
+
+    //Déclaration des query
     QSqlQuery query1;
     QSqlQuery query2;
     int index;
+
+    //Récupère l'index maximal
     query1.exec("SELECT MAX(Parties.Index) FROM Parties");
     query1.next();
     index=query1.value(0).toInt();
 
+    //Prépare la query
     query2.prepare("INSERT INTO Parties VALUES(?,?,?,?)");
+
+    //ajout de l'index, l'indexJoueur et les scrores
     query2.addBindValue(index+1);
     query2.addBindValue(indexJoueur);
     query2.addBindValue(scoreJoueur);
     query2.addBindValue(scoreMachine);
+
+    //éxécution de la requete
     query2.exec();
+
+    //fermeture de la base de donnée
     this->db.close();
 }

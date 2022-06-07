@@ -8,6 +8,7 @@
 #include "connexion.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include "resultats.h"
 
 class ChifoumiVue;
 class Presentation : public QObject
@@ -53,7 +54,9 @@ private:
     QTimer *timer = new QTimer(this);       //Instencie le timer
     Dialog * questionnaire;                 //Questionnaire associé à la présnetation
     Connexion *connexion;                   //connexion associé à la présentation
-    QSqlDatabase db;                //base de donnée de la saé
+    QSqlDatabase db;                        //base de donnée de la saé
+    Resultats *resultats;                    //table resultats associé à la présentation
+
 
     const unsigned short int ZERO = 0;
 public slots:
@@ -103,6 +106,10 @@ public slots:
      */
     void demanderOuvrirParameres();
 
+    /**
+     * @brief ouvre une boite de dialog avec les dix meilleurs résultats
+     */
+    void demanderOuvrirResultats();
 
     // decremente le QTimer et l'affiche à l'écran. S'occupe également de la fin de partie si le temps atteint ZERO
     void update();

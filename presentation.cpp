@@ -195,3 +195,9 @@ void Presentation::afficherConnexion(){
     connexion=new Connexion(getVue());
     connexion->exec();
 }
+
+void Presentation::demanderOuvrirResultats(){
+    //instenciation de résultats
+    resultats = new Resultats(getVue());
+    resultats->exec();
+}

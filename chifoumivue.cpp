@@ -49,6 +49,7 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
     QObject::connect(ui->actionInformationsApp, SIGNAL(triggered()), c, SLOT(demanderInfosApp()));
     QObject::connect(ui->actionParametrer, SIGNAL(triggered()), c, SLOT(demanderOuvrirParameres()));
+    QObject::connect(ui->actionResultat, SIGNAL(triggered()),c,SLOT(demanderOuvrirResultats()));
 
 }
 
