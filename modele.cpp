@@ -16,7 +16,10 @@ Modele::Modele():
     scoreMachine(0),
     coupJoueur(rien),
     coupMachine(rien),
-    scoreMax(5)
+    scoreMax(5),
+    tempsRestant(30),
+    tempsDepart(30)
+
 {
 }
 

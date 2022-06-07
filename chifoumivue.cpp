@@ -49,6 +49,7 @@ void ChifoumiVue::nvlleConnexion(QObject *c)
     QObject::connect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(demanderQuitterApp()));
     QObject::connect(ui->actionInformationsApp, SIGNAL(triggered()), c, SLOT(demanderInfosApp()));
     QObject::connect(ui->actionParametrer, SIGNAL(triggered()), c, SLOT(demanderOuvrirParameres()));
+
 }
 
 void ChifoumiVue::lancerPartie(QString nom,int scoreMax, int tempsMax){
@@ -122,8 +123,8 @@ void ChifoumiVue::quitterApp(){
 }
 
 void ChifoumiVue::infosApp(){
-    QString infos = tr("version : V6\n"
-                    "dernière modification : 02 juin 2022\n"
+    QString infos = tr("version : V7\n"
+                    "dernière modification : 07 juin 2022\n"
                     "les auteurs : Tom Montbord, Guillian Celle et Oier Cesat");
     QMessageBox::information(this, "A propos de cette application.", infos, QMessageBox::Ok);
 }
@@ -151,6 +152,7 @@ void ChifoumiVue::afficherFinScore(int score, QString nom, unsigned int tempsRes
 void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup m,int scoreJoueur,int scoreMachine,int scoreMax,int tempsMax,QString nom){
     switch(e) {
         case Modele::UnEtat::enJeu:
+
             if (ui->bPause->text() == "Reprise jeu") {
                 ui->groupBox->setEnabled(true);
                 ui->bPause->setText("Pause");
@@ -180,8 +182,11 @@ void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup 
             break;
         case  Modele::UnEtat::accueil:
             parametrerPartie(nom,scoreMax,tempsMax);
-
             break;
+
+        case Modele::UnEtat::nonConnecte:
+            break;
+
         case  Modele::UnEtat::pause:
             ui->groupBox->setEnabled(false);
             ui->bPause->setText("Reprise jeu");

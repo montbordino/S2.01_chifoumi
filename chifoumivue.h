@@ -35,8 +35,12 @@ private slots:
     /**
      * @brief lance une nouvelle partie en effacant les données de la précédente et met la couleur bleu sur le joueur
      */
+
     void lancerPartie(QString="vous",int=5,int=30);
 
+    /**
+     * @brief permet de parametrer le jeux avec le nom, le score maximal et le temps max
+     */
     void parametrerPartie(QString="vous",int=5,int=30);
 
     /**

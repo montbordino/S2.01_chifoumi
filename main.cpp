@@ -7,20 +7,19 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    // créer la vue
+    ChifoumiVue *w=new ChifoumiVue;
     // créer le modèle
     Modele *m = new Modele();
-    // créer la présentation et lui associer le modèle
-    Presentation *p = new Presentation(m);
-    // créer la vue
-    ChifoumiVue w;
-    // associer la vue à la présentation
-    p->setVue(&w);
+    // créer la présentation et lui associer le modèle et la vue
+    Presentation *p = new Presentation(m,w);
     // initialiser la vue en conformité avec l'état initial du modèle
     p->getVue()->majInterface(m->getEtat());
     // connexion des signaux de la vue avec les slots de la présentation
-    w.nvlleConnexion(p);
-
+    w->nvlleConnexion(p);
+    //affiche la fenetre de connexion
+    p->afficherConnexion();
     // afficher la vue et démarrer la boucle d'attente des messages
-    w.show();
+    w->show();
     return a.exec();
 }

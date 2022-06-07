@@ -1,6 +1,5 @@
 #include "presentation.h"
 #include "chifoumivue.h"
-#include <QDebug>
 
 Presentation::Presentation(Modele *m,ChifoumiVue *v,QObject *parent)
     : QObject{parent}, _leModele(m)
@@ -37,9 +36,6 @@ void Presentation::demanderLancerPartie(){
     _leModele->initScores();
     _leModele->setTempsRestant(_leModele->getTempsDepart());
     _leModele->setEtatPartie(Modele::UnEtat::enJeu);
-    qDebug()<<_leModele->getScoreMax();
-    qDebug()<<_leModele->getTempsDepart();
-    qDebug()<<_leModele->getTempsRestant();
     _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(),_leModele->getScoreMax(),_leModele->getTempsDepart());
     timer->start();
 }
