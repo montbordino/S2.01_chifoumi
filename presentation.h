@@ -6,6 +6,8 @@
 #include <QTimer>
 #include "dialog.h"
 #include "connexion.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 class ChifoumiVue;
 class Presentation : public QObject
@@ -51,6 +53,7 @@ private:
     QTimer *timer = new QTimer(this);       //Instencie le timer
     Dialog * questionnaire;                 //Questionnaire associé à la présnetation
     Connexion *connexion;                   //connexion associé à la présentation
+    QSqlDatabase db;                //base de donnée de la saé
 
     const unsigned short int ZERO = 0;
 public slots:

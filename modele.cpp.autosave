@@ -171,6 +171,7 @@ Modele::UnEtat Modele::getEtat()
 }
 
 void Modele::enregistrerPartie(const int &indexJoueur){
+    //lié la connexion ODBC
     db=QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("S2.01");
     this->db.open();

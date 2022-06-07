@@ -18,6 +18,12 @@ public:
     ~Connexion();
 
     /**
+     * @brief retourne l'index de l'utilisateur
+     * @return int
+     */
+    int getIndex();
+
+    /**
      * @brief retourne l'identifiant de l'utilisateur
      * @return QString
      */
@@ -39,8 +45,10 @@ public:
      */
     void setId(QString);
 
+
 private:
     Ui::Connexion *ui;              // UI de la connexion
+    int index;                      //Index du nom et prénom
     QString id;                     // identifiant de la connexion
     QString mdp;                    // Mot de passe de la connexion
     QSqlDatabase db;                //base de donnée de la saé

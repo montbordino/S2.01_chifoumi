@@ -7,6 +7,9 @@
 #ifndef MODELE_H
 #define MODELE_H
 #include <iostream>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QVariant>
 
 using namespace std;
 
@@ -91,8 +94,14 @@ class Modele
             /* initialise � rien les attributs coupJoueur et coupMachine
                NON indispensable */
 
+        /**
+         * @brief enregistre les scores machines et joueur
+         */
+        void enregistrerPartie(const int&);
+
          ///* Attributs du Mod�le
      private:
+        QSqlDatabase db;                //base de donnée de la saé
         unsigned int scoreJoueur;       // score actuel du joueur
         unsigned int scoreMachine;      // score actuel de la Machine
         UnCoup coupJoueur;              // dernier coup jou� par le joueur

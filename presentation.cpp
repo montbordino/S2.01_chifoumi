@@ -77,12 +77,16 @@ void Presentation::demanderJouerTour(){
     if (_leModele->getScoreJoueur() >= _leModele->getScoreMax()){
         _leModele->setEtatPartie(Modele::UnEtat::accueil);
         _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur", _leModele->getTempsRestant(), _leModele->getTempsDepart());
+        _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+        _leModele->enregistrerPartie(connexion->getIndex());
     }
 
     //si la machine atteint le score maximal
     else if (_leModele->getScoreMachine() >= _leModele->getScoreMax() ){
         _leModele->setEtatPartie(Modele::UnEtat::accueil);
         _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine", _leModele->getTempsRestant(), _leModele->getTempsDepart());
+        _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+        _leModele->enregistrerPartie(connexion->getIndex());
     }
 }
 
@@ -114,17 +118,23 @@ void Presentation::update()
             //si le joueur à un score plus élevé
             if (_leModele->getScoreJoueur() > _leModele->getScoreMachine()){
                 _laVue->afficherFinScore(_leModele->getScoreJoueur(), "joueur", _leModele->getTempsRestant(), _leModele->getTempsDepart());
+                _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+                _leModele->enregistrerPartie(connexion->getIndex());
 
             }
 
             //si la machine a un score plus élevé
             else if (_leModele->getScoreMachine() > _leModele->getScoreJoueur() ){
                 _laVue->afficherFinScore(_leModele->getScoreMachine(), "Machine", _leModele->getTempsRestant(), _leModele->getTempsDepart());
+                _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+                _leModele->enregistrerPartie(connexion->getIndex());
             }
 
             //si il y a égalité
             else {
                 _laVue->afficherFinScore(_leModele->getScoreMachine(), "égalité", _leModele->getTempsRestant(), _leModele->getTempsDepart());
+                _laVue->majInterface(_leModele->getEtat(),_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+                _leModele->enregistrerPartie(connexion->getIndex());
             }
         }
     }

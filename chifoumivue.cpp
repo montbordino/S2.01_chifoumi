@@ -202,6 +202,7 @@ void ChifoumiVue::majInterface(Modele::UnEtat e,Modele::UnCoup c,Modele::UnCoup 
 
         //Lorsque le jeu est dans l'accueil
         case  Modele::UnEtat::accueil:
+            ui->actionParametrer->setEnabled(true);
             parametrerPartie(nom,scoreMax,tempsMax);
             break;
 

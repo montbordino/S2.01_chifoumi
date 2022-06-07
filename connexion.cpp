@@ -24,6 +24,10 @@ Connexion::~Connexion()
     delete ui;
 }
 
+int Connexion::getIndex(){
+    return index;
+}
+
 QString Connexion::getId(){
     id = ui->lineEditId->text();
     return id;
@@ -69,10 +73,12 @@ void Connexion::valider(){
     //Vérification
     if(query.next()){
         this->close();
+        index=query.value(0).toInt();
         id=query.value(1).toString();
         mdp=query.value(2).toString();
     }
     else {
         QMessageBox::information(this,"Erreur","L'identifiant ou le mot de passe sont incorrects",QMessageBox::Ok);
     }
+    this->db.close();
 }
